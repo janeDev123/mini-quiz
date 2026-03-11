@@ -3,9 +3,8 @@ name: CD — Deploy to Laravel Cloud
 on:
   push:
     branches: [main]
-  workflow_dispatch:        # allows manual trigger from GitHub UI
+  workflow_dispatch:
 
-# Cancel any in-progress deploy if a new push comes in
 concurrency:
   group: laravel-cloud-deploy
   cancel-in-progress: true
@@ -14,7 +13,6 @@ jobs:
   deploy:
     name: Deploy to Laravel Cloud
     runs-on: ubuntu-latest
-    needs: []               # runs independently; gate with CI if you prefer
     environment: production
 
     steps:
@@ -24,8 +22,7 @@ jobs:
       - name: 🐘 Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.4'   # cloud-cli requires >= 8.4
-          coverage: none
+          php-version: '8.4'
 
       - name: 📦 Cache Composer dependencies
         uses: actions/cache@v4
@@ -34,7 +31,7 @@ jobs:
           key: composer-${{ hashFiles('composer.lock') }}
           restore-keys: composer-
 
-      - name: 📥 Install Composer dependencies (production)
+      - name: 📥 Install Composer dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
       - name: 🟢 Setup Node
@@ -49,13 +46,7 @@ jobs:
       - name: 🏗️ Build frontend assets
         run: npm run build
 
-      - name: ☁️ Install Laravel Cloud CLI
-        run: |
-          composer global require laravel/cloud-cli --no-interaction
-        env:
-          COMPOSER_HOME: /home/runner/.composer
-
-      - name: 🚀 Deploy to Laravel Cloud
+      - name: ☁️ Deploy to Laravel Cloud
         env:
           LARAVEL_CLOUD_TOKEN: ${{ secrets.LARAVEL_CLOUD_TOKEN }}
         run: |
@@ -65,5 +56,11 @@ jobs:
             --no-interaction \
             --wait
 
-            - name: 🗃️ Run Laravel migrations
-  run: php artisan migrate --force
+      - name: 🗃️ Run migrations
+        run: php artisan migrate --force
+
+      - name: ⚡ Optimize Laravel
+        run: |
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
