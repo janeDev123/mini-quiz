@@ -21,13 +21,13 @@ class QuestionController extends Controller
     }
 
     public function store(StoreQuestionRequest $request)
-    {   
-        
+    {
+
         $question = Question::create(['body' => $request->body]);
 
         foreach ($request->choices as $choice) {
             $question->choices()->create([
-                'body'       => $choice['body'],
+                'body' => $choice['body'],
                 'is_correct' => isset($choice['is_correct']),
             ]);
         }
@@ -51,7 +51,7 @@ class QuestionController extends Controller
 
         foreach ($request->choices as $choice) {
             $question->choices()->create([
-                'body'       => $choice['body'],
+                'body' => $choice['body'],
                 'is_correct' => isset($choice['is_correct']),
             ]);
         }

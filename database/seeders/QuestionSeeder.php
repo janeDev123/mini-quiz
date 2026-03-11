@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Choice;
 use App\Models\Question;
 use Illuminate\Database\Seeder;
 
@@ -12,7 +11,7 @@ class QuestionSeeder extends Seeder
     {
         $questions = [
             [
-                'body'    => 'What is the capital of the Philippines?',
+                'body' => 'What is the capital of the Philippines?',
                 'choices' => [
                     ['body' => 'Cebu City',    'is_correct' => false],
                     ['body' => 'Manila',        'is_correct' => true],
@@ -21,7 +20,7 @@ class QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'body'    => 'What is 7 × 8?',
+                'body' => 'What is 7 × 8?',
                 'choices' => [
                     ['body' => '54', 'is_correct' => false],
                     ['body' => '56', 'is_correct' => true],
@@ -30,7 +29,7 @@ class QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'body'    => 'Which planet is known as the Red Planet?',
+                'body' => 'Which planet is known as the Red Planet?',
                 'choices' => [
                     ['body' => 'Venus',   'is_correct' => false],
                     ['body' => 'Jupiter', 'is_correct' => false],
@@ -39,7 +38,7 @@ class QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'body'    => 'What language is primarily used for web styling?',
+                'body' => 'What language is primarily used for web styling?',
                 'choices' => [
                     ['body' => 'HTML', 'is_correct' => false],
                     ['body' => 'PHP',  'is_correct' => false],
@@ -48,7 +47,7 @@ class QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'body'    => 'What does HTML stand for?',
+                'body' => 'What does HTML stand for?',
                 'choices' => [
                     ['body' => 'Hyper Text Markup Language',    'is_correct' => true],
                     ['body' => 'High Tech Markup Language',     'is_correct' => false],
@@ -57,7 +56,7 @@ class QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'body'    => 'Who is considered the father of the modern computer?',
+                'body' => 'Who is considered the father of the modern computer?',
                 'choices' => [
                     ['body' => 'Alan Turing',   'is_correct' => true],
                     ['body' => 'Bill Gates',    'is_correct' => false],
@@ -66,7 +65,7 @@ class QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'body'    => 'What is the largest ocean on Earth?',
+                'body' => 'What is the largest ocean on Earth?',
                 'choices' => [
                     ['body' => 'Atlantic Ocean', 'is_correct' => false],
                     ['body' => 'Indian Ocean',   'is_correct' => false],
@@ -75,7 +74,7 @@ class QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'body'    => 'Which framework is maintained by Laravel?',
+                'body' => 'Which framework is maintained by Laravel?',
                 'choices' => [
                     ['body' => 'Symfony',  'is_correct' => false],
                     ['body' => 'Laravel',  'is_correct' => true],
@@ -84,7 +83,7 @@ class QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'body'    => 'What is the boiling point of water in Celsius?',
+                'body' => 'What is the boiling point of water in Celsius?',
                 'choices' => [
                     ['body' => '90°C',  'is_correct' => false],
                     ['body' => '100°C', 'is_correct' => true],
@@ -93,7 +92,7 @@ class QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'body'    => 'Which data structure uses LIFO (Last In First Out)?',
+                'body' => 'Which data structure uses LIFO (Last In First Out)?',
                 'choices' => [
                     ['body' => 'Queue',  'is_correct' => false],
                     ['body' => 'Stack',  'is_correct' => true],

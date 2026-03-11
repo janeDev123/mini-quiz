@@ -10,7 +10,7 @@ class IsStudent
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (!$request->user() || $request->user()->role !== 'student') {
+        if (! $request->user() || $request->user()->role !== 'student') {
             abort(403, 'Access denied.');
         }
 

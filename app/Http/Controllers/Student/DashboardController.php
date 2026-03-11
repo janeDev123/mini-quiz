@@ -10,9 +10,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $user         = Auth::user();
+        $user = Auth::user();
         $totalAttempts = QuizResult::where('user_id', $user->id)->count();
-        $bestScore     = QuizResult::where('user_id', $user->id)->max('score');
+        $bestScore = QuizResult::where('user_id', $user->id)->max('score');
         $recentResults = QuizResult::where('user_id', $user->id)
             ->latest()
             ->take(5)

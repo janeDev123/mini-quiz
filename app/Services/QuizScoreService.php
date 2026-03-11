@@ -9,9 +9,8 @@ class QuizScoreService
     /**
      * Calculate the score for a quiz attempt.
      *
-     * @param  Collection  $questions
-     * @param  array       $answers  [question_id => choice_id]
-     * @return array       [$score, $total]
+     * @param  array  $answers  [question_id => choice_id]
+     * @return array [$score, $total]
      */
     public function calculate(Collection $questions, array $answers): array
     {
