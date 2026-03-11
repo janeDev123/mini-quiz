@@ -64,3 +64,6 @@ jobs:
             --environment="production" \
             --no-interaction \
             --wait
+
+            - name: 🗃️ Run Laravel migrations
+  run: php artisan migrate --force
