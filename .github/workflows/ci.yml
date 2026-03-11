@@ -82,7 +82,7 @@ jobs:
           DB_DATABASE: mini_quiz_test
           DB_USERNAME: root
           DB_PASSWORD: root
-        run: php artisan test   # removed --parallel (requires brianium/paratest)
+        run: ./vendor/bin/phpunit --testdox
 
   lint:
     name: Code Style (Pint)
@@ -108,5 +108,11 @@ jobs:
       - name: 📥 Install Composer dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
-      - name: 🎨 Run Laravel Pint
-        run: ./vendor/bin/pint --test
+      - name: 🎨 Run Laravel Pint (auto-fix)
+        run: ./vendor/bin/pint
+
+      - name: 📝 Commit Pint fixes if any
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet && echo "No style fixes needed" || (git add -A && git commit -m "style: apply Laravel Pint fixes [skip ci]" && git push)

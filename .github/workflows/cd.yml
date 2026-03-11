@@ -49,11 +49,18 @@ jobs:
       - name: 🏗️ Build frontend assets
         run: npm run build
 
-      - name: ☁️ Deploy to Laravel Cloud
+      - name: ☁️ Install Laravel Cloud CLI
         run: |
-          composer global require laravel/cloud-cli
+          composer global require laravel/cloud-cli --no-interaction
+        env:
+          COMPOSER_HOME: /home/runner/.composer
+
+      - name: 🚀 Deploy to Laravel Cloud
+        env:
+          LARAVEL_CLOUD_TOKEN: ${{ secrets.LARAVEL_CLOUD_TOKEN }}
+        run: |
           ~/.composer/vendor/bin/cloud deploy \
-            --token="${{ secrets.LARAVEL_CLOUD_TOKEN }}" \
             --project="${{ secrets.LARAVEL_CLOUD_PROJECT }}" \
             --environment="production" \
+            --no-interaction \
             --wait
