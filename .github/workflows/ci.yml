@@ -82,7 +82,7 @@ jobs:
           DB_DATABASE: mini_quiz_test
           DB_USERNAME: root
           DB_PASSWORD: root
-        run: php artisan test --parallel
+        run: php artisan test   # removed --parallel (requires brianium/paratest)
 
   lint:
     name: Code Style (Pint)
