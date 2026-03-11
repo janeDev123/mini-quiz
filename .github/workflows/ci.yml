@@ -43,10 +43,11 @@ jobs:
           key: composer-${{ hashFiles('composer.lock') }}
           restore-keys: composer-
 
+      # Keep dev deps so phpunit & pint exist in vendor/bin
       - name: 📥 Install Composer dependencies
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+        run: composer install --no-interaction --prefer-dist
 
-      - name: 🟢 Setup Node & install npm deps
+      - name: 🟢 Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -82,7 +83,7 @@ jobs:
           DB_DATABASE: mini_quiz_test
           DB_USERNAME: root
           DB_PASSWORD: root
-        run: ./vendor/bin/phpunit --testdox
+        run: php vendor/bin/phpunit --testdox
 
   lint:
     name: Code Style (Pint)
@@ -106,13 +107,14 @@ jobs:
           restore-keys: composer-
 
       - name: 📥 Install Composer dependencies
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+        run: composer install --no-interaction --prefer-dist
 
       - name: 🎨 Run Laravel Pint (auto-fix)
-        run: ./vendor/bin/pint
+        run: php vendor/bin/pint
 
       - name: 📝 Commit Pint fixes if any
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git diff --quiet && echo "No style fixes needed" || (git add -A && git commit -m "style: apply Laravel Pint fixes [skip ci]" && git push)
+          git diff --quiet && echo "✅ No style fixes needed" || \
+          (git add -A && git commit -m "style: apply Laravel Pint fixes [skip ci]" && git push)
