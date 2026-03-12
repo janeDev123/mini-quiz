@@ -86,9 +86,9 @@
     </div>
 
     {{-- Confirm Modal --}}
-    <div id="confirm-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="closeModal()"></div>
-        <div class="relative bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full text-center">
+    <div id="confirm-modal" class="hidden" style="position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:1rem;">
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="closeModal()" style="position:fixed;inset:0;"></div>
+        <div class="relative bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full text-center" style="position:relative;z-index:10000;">
             <div class="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
@@ -111,10 +111,12 @@
 
     <script>
         function confirmSubmit() {
-            document.getElementById('confirm-modal').classList.remove('hidden');
+            const modal = document.getElementById('confirm-modal');
+            modal.style.display = 'flex';
         }
         function closeModal() {
-            document.getElementById('confirm-modal').classList.add('hidden');
+            const modal = document.getElementById('confirm-modal');
+            modal.style.display = 'none';
         }
     </script>
 
