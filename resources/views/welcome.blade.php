@@ -612,9 +612,20 @@
             MiniQuiz
         </div>
         <div class="nav-links">
-            <a href="{{ route('login') }}" class="btn-nav-ghost">Sign In</a>
-            <a href="{{ route('register') }}" class="btn-nav-primary">Get Started →</a>
-        </div>
+
+    @guest
+        <a href="{{ route('login') }}" class="btn-nav-ghost">Sign In</a>
+        <a href="{{ route('register') }}" class="btn-nav-primary">Get Started →</a>
+    @endguest
+
+    @auth
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="btn-nav-ghost">Logout</button>
+        </form>
+    @endauth
+
+</div>
     </nav>
 
     <!-- Hero -->
